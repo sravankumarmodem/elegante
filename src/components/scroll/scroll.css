@@ -1,0 +1,14 @@
+@keyframes scroll-right {
+    0% {
+      transform: translateX(100%);
+    }
+    90% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .animate-scrolling-text {
+    animation: scroll-right 10s linear infinite;
+    white-space: nowrap;
+    padding-right: 100%; /* To prevent text from wrapping */
+  }
