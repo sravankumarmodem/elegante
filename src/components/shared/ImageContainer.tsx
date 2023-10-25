@@ -16,15 +16,16 @@ const ImageContainer = ({
   imgListItems,
 }: Props) => {
   
+  const tabletScreens = useMediaQuery("(min-width: 769px)");
+  const mobileScreens = useMediaQuery("(min-width: 432px)"); 
 
-  const largeScreens = useMediaQuery("(min-width: 1024px)");
   console.log(imgHeight,
     imgWidth,
     imgGap,
     imgListItems)
   return (
     <>
-      { largeScreens &&
+      {  tabletScreens && mobileScreens &&
         <div className=" w-[1921px]">
           <div className="flex item-center justify-center  mt-[140px]">
             <div className={` gap-[70px] flex  round-[20px] justify-center `}>
@@ -57,9 +58,9 @@ const ImageContainer = ({
         </div>
       }
 
-      {/* ============smal=========== */}
-      { !largeScreens &&
-        <div className=" w-[1024px]">
+      {/* ============Tab=========== */}
+      { ! tabletScreens && mobileScreens &&
+        <div className=" w-[768px]">
           <div className="flex   item-center justify-center  mt-[140px]">
             <div className={`  flex flex-col round-[20px] justify-center `}>
               {imgListItems.map((item: ImgInterFace, index) => (
@@ -67,17 +68,42 @@ const ImageContainer = ({
                   <img
                     src={item.imge}
                     alt=""
-                    className={
-                      imgHeight === 694
-                        ? `h-[694px] w-[500px]`
-                        : `h-[458px] w-[517px]`
-                    }
+                    className={ `h-[458px] w-[517px]`}
                   />
                   <div className="flex  flex-col items-center justify-center">
                     <p className="mt-8 font-openSans text-101820 font-bold h-[41px] text-2xl">
                       {item.title}
                     </p>
                     <p className=" font-openSans text-101820 font-normal h-[28px] text-2xl">
+                      {item.discription}
+                    </p>
+                    <div className="mt-[30px] mb-[30px]">
+                      <ShopNowButton buttonText="Shop Now" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      }
+      {/* ============smal=========== */}
+      { ! tabletScreens && !mobileScreens &&
+        <div className=" w-[390px] flex flex-col items-center justify-center">
+          <div className="flex mx-[40px]  item-center justify-center  mt-[40px]">
+            <div className={`  flex flex-col round-[20px] items-center justify-center `}>
+              {imgListItems.map((item: ImgInterFace, index) => (
+                <div key={index} className="mt-[40px] ">
+                  <img
+                    src={item.imge}
+                    alt=""
+                    className={ `h-[358px] w-[317px]`}
+                  />
+                  <div className="flex  flex-col items-start mx-[20px] justify-center">
+                    <p className="mt-8 font-openSans text-101820 font-bold h-[41px] text-[24px]">
+                      {item.title}
+                    </p>
+                    <p className=" font-openSans mt-[40px] text-101820 font-normal h-[28px] text-[18px]">
                       {item.discription}
                     </p>
                     <div className="mt-[30px] mb-[30px]">

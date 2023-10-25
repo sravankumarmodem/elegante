@@ -27,10 +27,11 @@ const imgListItems :Array<ImgList>=[
  
 ] 
 const HairProducts = () => {
-    const largeScreens = useMediaQuery("(min-width: 1024px)");
+    const tabletScreens = useMediaQuery("(min-width: 769px)");
+  const mobileScreens = useMediaQuery("(min-width: 432px)");
   return (
     <>
-    { largeScreens&&
+    { tabletScreens && mobileScreens &&
         <div className=" mx-[140px] w-[1921px] ">
         <div className="flex  mt-[480px] round-md gap-[72px]   ">
     {
@@ -53,17 +54,20 @@ const HairProducts = () => {
     }
 
     {/* ============small ============ */}
-    {!largeScreens &&
-        <div className="  w-[1024px] ">
-        <div className="flex flex-col items-center justify-center mt-[480px] round-md    ">
+    {! tabletScreens && 
+        <div className={mobileScreens ? "  w-[768px] ":"w-[390px"}>
+        <div className="flex flex-col items-center justify-center mt-[280px] round-md    ">
     {
         imgListItems.map((item:ImgList, index)=>(
 
             <div key={index} className="flex flex-col item-center mb-[40px] ">
-                <img src={item.imge} alt=""  className="w-[784px] h-[380px] "/>
+                <img src={item.imge} alt=""  className={mobileScreens ? "w-[684px] h-[380px] ": "w-[294px] h-[280px] "}/>
                 <div className="flex flex-col items-center justify-center">
-                    <p className=" font-openSans text-101820 font-bold h-[41px] mt-[27px] text-2xl">{item.title}</p>
-                    <p className=" mt-[11px] mb-[40px] font-openSans text-101820 font-normal h-[28px] text-2xl">{item.discription}</p>
+                    <p className=" font-openSans text-101820 font-bold h-[41px] mt-[27px] text-[24px]">{item.title}</p>
+                    <div className={mobileScreens ? "mt-[21px] " : "mt-[41px]"}>
+
+                    <p className=" mb-[40px] font-openSans text-101820 font-normal h-[28px] text-[18px]">{item.discription}</p>
+                    </div>
                     <ShopNowButton buttonText="Shop Now"/>
                 </div>
             </div>
